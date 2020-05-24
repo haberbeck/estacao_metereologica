@@ -1,5 +1,4 @@
 // Arduino - Sensor DHT - Umidade e Temperatura
-// <a href="https://blog.eletrogate.com/guia-basico-dos-sensores-de-umidade-e-temperatura-dht11-dht22">https://blog.eletrogate.com/</a>
 // Adafruit Unified Sensor Library: https://github.com/adafruit/Adafruit_Sensor
  
 #include <Adafruit_Sensor.h>                       // Biblioteca DHT Sensor Adafruit 
