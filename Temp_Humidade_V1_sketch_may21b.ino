@@ -5,14 +5,14 @@
 #include <DHT.h>
 #include <DHT_U.h>
  
-#define DHTTYPE      DHT22                       // Sensor DHT22 ou AM2302
+#define DHTTYPE      DHT22                         // Sensor DHT22 ou AM2302
  
 #define DHTPIN 2                                   // Pino do Arduino conectado no Sensor(Data) 
 DHT_Unified dht(DHTPIN, DHTTYPE);                  // configurando o Sensor DHT - pino e tipo
 uint32_t delayMS;                                  // variável para atraso no tempo
 
-  String temperatura = "";
-  String umidade = "";
+String temperatura = "";
+String umidade = "";
  
 void setup()
 {
@@ -48,26 +48,21 @@ void loop()
   dht.temperature().getEvent(&event);           // faz a leitura da Temperatura
   if (isnan(event.temperature))                 // se algum erro na leitura
   {
+    temperatura = "";                           //zera o valor da variável
     Serial.println("Erro na leitura da Temperatura!");
   }
   else                                         
   {
-    /*Serial.print("Temperatura: ");              // imprime a Temperatura
-    Serial.print(event.temperature);
-    Serial.println(" *C");*/
-
     temperatura = "Temperatura: " + (String)event.temperature + " *C";
   }
   dht.humidity().getEvent(&event);              // faz a leitura de umidade
   if (isnan(event.relative_humidity))           // se algum erro na leitura
   {
+    umidade = "";                               //zera o valor da variável
     Serial.println("Erro na leitura da Umidade!");
   }
   else
   {
-    /*Serial.print("Umidade: ");                  // imprime a Umidade
-    Serial.print(event.relative_humidity);
-    Serial.println("%");*/
     umidade = "Umidade: " + (String)event.relative_humidity + " %";
   }
 
