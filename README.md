@@ -9,3 +9,11 @@ Bibliotecas Utilizadas:
 - Arduino - Sensor DHT - Umidade e Temperatura
 - Adafruit Unified Sensor Library: https://github.com/adafruit/Adafruit_Sensor
  
+# Esquema de ligação da prática  
+Conexão do Sensor DHT-22
+
+Sensor >> Arduino
+- pino 1 >> 5v
+- pino 2 >> GND
+- pino 3 >> null
+- pino 4 >> pino 2
