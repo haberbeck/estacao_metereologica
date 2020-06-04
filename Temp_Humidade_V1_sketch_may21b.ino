@@ -5,7 +5,7 @@
 #include <DHT.h>
 #include <DHT_U.h>
  
-#define DHTTYPE      DHT22                         // Sensor DHT22 ou AM2302
+#define DHTTYPE DHT22                             // Sensor DHT22 ou AM2302
  
 #define DHTPIN 2                                   // Pino do Arduino conectado no Sensor(Data) 
 DHT_Unified dht(DHTPIN, DHTTYPE);                  // configurando o Sensor DHT - pino e tipo
@@ -18,6 +18,7 @@ void setup()
 {
   Serial.begin(9600);                             // monitor serial 9600 bps
   dht.begin();                                    // inicializa a função
+  
   Serial.println("Usando o Sensor DHT");
   sensor_t sensor;
   dht.temperature().getSensor(&sensor);           // imprime os detalhes do Sensor de Temperatura
@@ -37,12 +38,17 @@ void setup()
   Serial.print  ("Valor min:    "); Serial.print(sensor.min_value); Serial.println("%");
   Serial.print  ("Resolucao:   "); Serial.print(sensor.resolution); Serial.println("%");
   Serial.println("------------------------------------");
-  delayMS = sensor.min_delay / 1000;            // define o atraso entre as leituras
+  //delayMS = sensor.min_delay / 1000;            // define o atraso entre as leituras
+
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(13, OUTPUT);
 }
  
 void loop()
 {
-  delay(10000);                                 //intervalo de 10 segundos entre cada medição
+  digitalWrite(13, LOW);                        // led apagado
+  
+  delay(9800);                                 //intervalo de 10 segundos entre cada medição
   sensors_event_t event;                        // inicializa o evento da Temperatura
   
   dht.temperature().getEvent(&event);           // faz a leitura da Temperatura
@@ -70,5 +76,8 @@ void loop()
   {
     Serial.println(temperatura + " - " + umidade);
   }
+  
+  digitalWrite(13, HIGH);                       // pisca o led para sinalizar uma coleta de temperatura e umidade
+  delay(200);                                   // 200ms on
   
 }
